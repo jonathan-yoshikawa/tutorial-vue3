@@ -3,6 +3,13 @@
 Ao utilizar o visual studio code, instalar a extensão "es6-string-html"
 
 Dentro de index.html importar o vue.js
+```javascript
+<html>
+  <head>
+      <script src="./js/vue.global.js"></script>
+  </head> 
+</html>
+```
 
 ## Criando um app Vue
 
