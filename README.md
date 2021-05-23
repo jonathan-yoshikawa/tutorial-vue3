@@ -11,7 +11,10 @@ Dentro de index.html importar o vue.js
 </html>
 ```
 
-## Criando um app Vue
+ - [Criando um app Vue](#criando-um-app-vue) 
+ - [Montando o app](#montando-o-app) 
+
+## Criando um app Vue 
 
 Em um arquivo main.js criar o app com:
 ```javascript
@@ -303,4 +306,120 @@ index.html
   <div class="cart">Cart({{ cart }})</div>
   <product-display :premium="premium"></product-display>
 </div>
+```
+
+##Communicating Events
+
+Permite a comunicação do comoponente filho com o componente pai
+
+### Emitting the event
+
+components/ProductDisplay.js
+```javascript
+methods: {
+  addToCart() {
+    this.$emit('add-to-cart')
+  }
+  ...
+ }
+```
+
+index.html
+```javascript
+<product-display :premium="premium" @add-to-cart="updateCart"></product-display>
+```
+
+main.js
+```javascript
+const app = Vue.createApp({
+  data() {
+    return {
+      cart: [],
+      ...
+    }
+  },
+  methods: {
+    updateCart() {
+      this.cart += 1
+    }
+  }
+})
+```
+
+## Forms & v-model
+
+A diretiva v-model cria um *two-way data binding*
+
+components/ReviewForm.js
+```javascript
+app.component('review-form', {
+  template:
+  /*html*/
+  `<form class="review-form">
+    <h3>Leave a review</h3>
+    <label for="name">Name:</label>
+    <input id="name" v-model="name">
+
+    <label for="review">Review:</label>      
+    <textarea id="review" v-model="review"></textarea>
+
+    <label for="rating">Rating:</label>
+    <select id="rating" v-model.number="rating">
+      <option>5</option>
+      <option>4</option>
+      <option>3</option>
+      <option>2</option>
+      <option>1</option>
+    </select>
+
+    <input class="button" type="submit" value="Submit">  
+  </form>`,
+  data() {
+    return {
+      name: '',
+      review: '',
+      rating: null
+  }
+})
+```
+
+Realizando o submit do formlário
+
+components/ReviewForm.js
+```javascript
+app.component('review-form', {
+  template:
+  /*html*/
+  `<form class="review-form" @submit.prevent="onSubmit">
+    ...
+    <input class="button" type="submit" value="Submit">  
+  </form>`
+  ...
+})
+```
+
+```javascript
+...
+data() {
+  return {
+    name: '',
+    review: '',
+    rating: null
+   }
+ },
+ methods: {
+   onSubmit() {
+     let productReview = {
+       name: this.name,
+       review: this.review,
+       rating: this.rating,
+     }
+     this.$emit('review-submitted', productReview)
+
+     this.name = ''
+     this.review = ''
+     this.rating = null
+   }
+ }
+...
 ```
