@@ -13,6 +13,19 @@ Dentro de index.html importar o vue.js
 
  - [Criando um app Vue](#criando-um-app-vue) 
  - [Montando o app](#montando-o-app) 
+ - [Mostrando dados](#mostrando-dados) 
+ - [Attribute Binding](#attribute-binding) 
+ - [Renderização condicional](#renderização-condicional) 
+ - [Renderizando Listas](#renderizando-listas) 
+ - [Eventos](#eventos) 
+ - [Class & Style](#class-&-style) 
+ - [Computed Properties](#computed-properties) 
+ - [Components & Props](#components-&-props) 
+ - [Template](#template) 
+ - [Importando o componente](#importando-o-componente) 
+ - [Props](#props) 
+ - [Communicating Events](#communicating-events) 
+ - [Forms & v-model](#forms-&-v-model) 
 
 ## Criando um app Vue 
 
@@ -107,7 +120,7 @@ Nós estamos usando uma abreviação de v-bind para ligar o id com o atributo ke
 
 Quando os dados mudam, o Vue usa essas keys para saber quais elementos HTML remover, atualizar ou se precisa criar algum outro elemento.
 
-##Eventos
+## Eventos
 
 ```javascript
 <button class="button" v-on:click="logic to run">Add to Cart</button>
@@ -119,7 +132,7 @@ Abreviação para v-on
 
 ## Class & Style
 
-Style Biding
+- Style Biding
 ```javascript
 <div :style="{ backgroundColor: variant.color }">
 </div>
@@ -132,9 +145,9 @@ Como estamos utilizando objetos javascript o nome da propriedade CSS deve ser us
 <div :style="{ 'background-color': variant.color }></div>
 ```
 
-Ambas opçoes funcionam
+Ambas opções funcionam
 
-## Class Binding
+- Class Binding
 ```javascript
 <button 
   class="button" 
@@ -308,7 +321,7 @@ index.html
 </div>
 ```
 
-##Communicating Events
+## Communicating Events
 
 Permite a comunicação do comoponente filho com o componente pai
 
